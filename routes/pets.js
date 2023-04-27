@@ -2,6 +2,7 @@ const Cliente = require("../database/cliente");
 const Pet = require("../database/pet");
 
 const { Router } = require("express");
+const Servico = require("../database/servico");
 
 // Criar o grupo de rotas (/pets)
 const router = Router();
@@ -23,12 +24,13 @@ router.get("/pets/:id", async (req, res) => {
 });
 
 router.post("/pets", async (req, res) => {
-  const { nome, tipo, porte, dataNasc, clienteId } = req.body;
+  const { nome, tipo, porte, dataNasc, clienteId, servicoId } = req.body;
 
   try {
     const cliente = await Cliente.findByPk(clienteId);
-    if (cliente) {
-      const pet = await Pet.create({ nome, tipo, porte, dataNasc, clienteId });
+    const servico = await Servico.findByPk(servicoId);
+    if ((cliente) && (servico)) {
+      const pet = await Pet.create({ nome, tipo, porte, dataNasc, clienteId, servicoId });
       res.status(201).json(pet);
     } else {
       res.status(404).json({ message: "Cliente não encontrado." });
