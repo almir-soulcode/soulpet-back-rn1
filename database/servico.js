@@ -12,15 +12,7 @@ const Servico = connection.define("servico", {
     type: DataTypes.STRING,
     allowNull: false,
   }, 
-  status: {
-    type: DataTypes.STRING,
-    allowNull:false,
-    defaultValue: "pendente"
-  },
-  data: {
-    type: DataTypes.DATEONLY,
-    allowNull: false,
-  }
+
   
 });
 
