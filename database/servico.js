@@ -13,9 +13,4 @@ const Servico = connection.define("servico", {
     }
 })
 
-
-Servico.hasMany(Pet);
-Pet.belongsToMany(Servico);
-
-
 module.exports = Servico;
