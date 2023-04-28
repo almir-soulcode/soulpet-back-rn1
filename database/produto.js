@@ -20,7 +20,7 @@ const Produto = connection.define("produto", {
         allowNull: false
     },
     desconto: {
-        type: DataTypes.STRING(2),
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     dataDesconto: {
