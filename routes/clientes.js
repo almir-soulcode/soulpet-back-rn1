@@ -1,5 +1,6 @@
 const Cliente = require("../database/cliente");
 const Endereco = require("../database/endereco");
+const Pet = require("../database/pet");
 
 const { Router } = require("express");
 
@@ -27,6 +28,31 @@ router.get("/clientes/:id", async (req, res) => {
     res.status(404).json({ message: "Usuário não encontrado." });
   }
 });
+router.get("/clientes/:clienteId/pets", async (req, res) => {
+  // SELECT * FROM clientes WHERE id = 1;
+  const clienteId = await Pet.findAll({
+    where: { clienteId: req.params.clienteId },
+  });
+
+  if (clienteId) {
+    res.json(clienteId);
+  } else {
+    res.status(404).json({ message: "Usuário não encontrado." });
+  }
+});
+
+router.get("/clientes/:clienteId/endereco", async (req, res) => {
+  const endereco = await Endereco.findOne({
+    where: { clienteId: req.params.clienteId },
+  });
+
+  if (endereco) {
+    res.json(endereco);
+  } else {
+    res.status(404).json({ message: "Endereço não encontrado." });
+  }
+});
+
 
 router.post("/clientes", async (req, res) => {
   // Coletar os dados do req.body
