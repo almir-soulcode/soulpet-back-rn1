@@ -3,7 +3,7 @@ const { connection } = require("./database");
 const Pet = require("./pet");
 const Servico = require("./servico");
 
-const PetServico = connection.define("PetServico", {
+const Agendamento = connection.define("Agendamento", {
   dataAgendada: {
     type: DataTypes.DATEONLY,
     allowNull: false,
@@ -28,8 +28,8 @@ const PetServico = connection.define("PetServico", {
   },
 });
 
-//Relacionamento Pet - Serviço N:N
-Pet.belongsToMany(Servico, { through: PetServico });
-Servico.belongsToMany(Pet, { through: PetServico });
+//Relacionamento Relacionamento Pet - Agendamento 1:N, Servico - Agendamento 1:N
+Pet.hasMany(Agendamento);
+Servico.hasMany(Agendamento);
 
 module.exports = PetServico;
