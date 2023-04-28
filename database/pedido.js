@@ -15,6 +15,8 @@ const Pedido = connection.define("pedido", {
     }
 })
 
+// Relacionamento
+
 Cliente.hasMany(Pedido);
 Produto.hasMany(Pedido);
 
