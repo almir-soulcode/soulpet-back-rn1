@@ -16,17 +16,17 @@ router.get("/agendamentos", async (req, res) => {
   }
 });
 
-router.post("/servicos", async (req, res) => {
-  const { dataAgendada, PetsId, ServicosId } = req.body;
+router.post("/agendamentos", async (req, res) => {
+  const { dataAgendada, PetId, ServicoId } = req.body;
 
   try {
-    const pet = await Pet.findByPk(PetsId);
-    const servico = await Servico.findByPk(ServicosId);
+    const pet = await Pet.findByPk(PetId);
+    const servico = await Servico.findByPk(ServicoId);
     if (pet && servico) {
       const agendamento = await Agendamento.create({
         dataAgendada,
-        PetsId,
-        ServicosId,
+        PetId,
+        ServicoId,
       });
       res.status(201).json({
         message: "Agendamento criado com sucesso",

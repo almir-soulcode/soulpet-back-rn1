@@ -12,20 +12,6 @@ const Agendamento = connection.define("Agendamento", {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  PetsId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Pet, // 'Movies' would also work
-      key: "id",
-    },
-  },
-  ServicosId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Servico,
-      key: "id",
-    },
-  },
 });
 
 //Relacionamento Relacionamento Pet - Agendamento 1:N, Servico - Agendamento 1:N
