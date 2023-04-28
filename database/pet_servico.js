@@ -11,6 +11,7 @@ const PetServico = connection.define("PetServico", {
   realizada: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
+    defaultValue: 1,
   },
   PetsId: {
     type: DataTypes.INTEGER,
