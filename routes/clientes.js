@@ -44,6 +44,20 @@ router.get("/clientes/:id/pets", async (req, res) => {
   }
 })
 
+router.get("/clientes/:clienteId/endereco", async (req, res) => {
+  const { clienteId } = req.params
+  try {
+    const endereco = await Endereco.findOne({where: {clienteId}})
+    if (endereco) {
+      res.json(endereco)
+    } else {
+      res.status(404).json({message: "Cliente não encontrado"})
+    }
+  } catch (erro) {
+    res.status(500).json({message: "Um erro aconteceu."})
+  }
+})
+
 router.post("/clientes", async (req, res) => {
   // Coletar os dados do req.body
   const { nome, email, telefone, endereco } = req.body;
