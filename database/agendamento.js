@@ -11,6 +11,7 @@ const Agendamento = connection.define("Agendamento", {
   realizada: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
+    defaultValue: 0,
   },
 });
 
