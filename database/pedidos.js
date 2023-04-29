@@ -3,11 +3,11 @@ const { connection } = require("./database");
 const Cliente = require("./cliente");
 const Produto = require("./produto");
 
-const Pedido = connection.define("pedido", {
+const Pedidos = connection.define("pedido", {
     codigo: {
-        primaryKey: 'id',
-        type:DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
     },
     quantidade: {
         type: DataTypes.DOUBLE,
@@ -17,7 +17,10 @@ const Pedido = connection.define("pedido", {
 
 // Relacionamento
 
-Cliente.hasMany(Pedido);
-Produto.hasMany(Pedido);
+Cliente.hasMany(Pedidos);
+Pedidos.belongsTo(Cliente);
 
-module.exports = Pedido;
+Produto.hasMany(Pedidos);
+Pedidos.belongsTo(Produto);
+
+module.exports = Pedidos;
