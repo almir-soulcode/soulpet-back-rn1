@@ -10,8 +10,9 @@ const connection = new Sequelize(
   process.env.DB_PASSWORD, // senha para acesso
   {
     // informações adicionais da conexão
-    host: process.env.DB_HOST, // endereço (banco local)
+    host: process.env.DB_HOST, // endereço (banco local)d
     dialect: "mysql", // o banco utilizado
+    timezone: '+03:00'
   }
 );
 
